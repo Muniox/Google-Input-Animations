@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Convergence&display=swap');
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* color variables */
+$clr-primary: hsl(180, 100%, 55%);
+$clr-primary-light: hsl(180, 100%, 84%);
+$clr-primary-dark: hsl(230, 70%, 12%);
+$clr-gray100: hsl(220, 100%, 99%);
+$clr-gray150: hsl(223, 47%, 97%);
+$clr-gray200: hsl(218, 31%, 95%);
+$clr-gray300: hsl(222, 28%, 91%);
+$clr-gray400: hsl(229, 11%, 52%);
+$clr-gray500: hsl(230, 16%, 37%);
+$clr-gray600: hsl(225, 28%, 23%);
+$clr-gray700: hsl(226, 41%, 15%);
+$clr-bg: hsl(230, 71%, 8%);
+
+/* border radius */
+$radius: 0.5rem;
+
+body {
+  font-family: 'Convergence', sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  background-color: $clr-bg;
+}
+
+.form {
+  position: relative;
+  width: 20rem;
+  height: 3rem;
+
+  &__input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid $clr-gray300;
+    border-radius: $radius;
+    font-family: inherit;
+    font-size: inherit;
+    color: white;
+    outline: none;
+    padding: 1.25rem;
+    background: none;
+
+    &:hover {
+      border-color: $clr-primary-light;
+    }
+
+    &:focus {
+      border-color: $clr-primary;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    left: 1rem;
+    top: 0.8rem;
+    padding: 0 0.5rem;
+    color: white;
+    cursor: text;
+    transition: top 150ms ease-in, left 150ms ease-in, font-size 150ms ease-in;
+    background: $clr-bg;
+  }
+}
+
+.form__input:focus ~ .form__label,
+.form__input:not(:placeholder-shown).form__input:not(:focus) ~ .form__label {
+  top: -0.5rem;
+  font-size: 0.8rem;
+  left: 0.8rem;
+}
+
+/*******************/
+/* poprawki do ie11*/
+/*******************/
+
+// dev ED dodane prostrze rozwiązanie ktore działa w IE11, wymaga require w inpucie
+_:-ms-lang(x),
+.ie10up,
+.form__input:focus + .form__label,
+.form__input:valid + .form__label {
+  top: -0.5rem;
+  font-size: 0.8rem;
+  left: 0.8rem;
+}
+
+_:-ms-lang(x),
+.ie10up,
+.form__input {
+  padding: 0 1.25rem;
+}
+
+.form__input::-ms-clear {
+  display: none;
+}
